@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shell SFMC Lead Capture Form</title>
+    <link rel="stylesheet" href="Form.css">
+    <script defer src="formJS.js"></script>
+</head>
+<body>
+ 
+    <div id="particles-js"></div>
+    
+        <div class="main-container">
+ 
+            <div class="step-row">
+                <div id="progressBar"></div>
+                <div class="step-column"><small class="step1">Step 1</small></div>
+                <div class="step-column"><small>Step 2</small></div>
+                <div class="step-column"><small>Step 3</small></div>
+                <div class="step-column"><small>Step 4</small></div>
+            </div>
+            
+            <div class="headers">
+                <h1>14 Get in touch</h1>
+                <h2>Please fill in the details below and one of the team will be in touch shortly</h2>
+                <p><span class="mandatory">*</span> denotes a mandatory field</p>
+            </div>
+ 
+            <div class="form-container">
+ 
+                <form id="form" action="%%=RequestParameter('PAGEURL')=%%" method="POST">
+ 
+                    <div class="form-part">
+                        <h3>Personal Details</h3>
+                        <div class="input-container-personal_company">
+ 
+                            <div>
+                                <label>Salutation</label>
+                                <select name="Salutation" value="">
+<option></option>
+<option> Mr. </option>
+<option> Mrs. </option>
+<option> Ms. </option>
+</select>
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                            <div>
+                                <label>First Name:<span class="mandatory">*</span></label>
+                                <input type="text" name="firstname" id="firstNameInput">
+                                <p>&nbsp;</p>
+                            </div>
+                            
+                            <div>
+                                <label>Last Name:<span class="mandatory">*</span></label>
+                                <input type="text" name="lastname" id="lastNameInput">
+                                <p>&nbsp;</p>
+                            </div>
+                            
+                            <div>
+                                <label>Email Address:<span class="mandatory">*</span></label>
+                                <input type="email" name="email" id="emailInput">
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                            <div>
+                                <label>Phone Number:<span class="mandatory">*</span></label>
+                                <input type="text" name="phonenumber" id="phoneInput">
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                        </div>
+                        <div class="button-container">
+                            <button type="button" id="btnNext1" class="next">Next</button>
+                        </div>
+                    </div>
+ 
+                    <div class="form-part">
+                        <h3>Company Details</h3>
+                        <div class="input-container-personal_company">
+ 
+                            <div>
+                                <label>Company Name:</label>
+                                <input type="text" name="companyname" id="companyNameInput" tabindex="-1">
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                            <div>
+                                <label>Company Zip Code:</label>
+                                <input type="text" name="companyzip" id="companyZipInput" tabindex="-1">
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                            <div>
+                                <label>Company Registration Number:</label>
+                                <input type="text" name="companynumber" id="companyNumberInput" tabindex="-1">
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                            <div>
+                                <label>Vat Number:</label>
+                                <input type="text" name="vatnumber" id="vatNumberInput" tabindex="-1">
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                        </div>
+                        <div class="button-container">
+                            <button type="button" id="btnBack1" class="back" tabindex="-1">Back</button>
+                            <button type="button" id="btnNext2" class="next" tabindex="-1">Next</button>
+                       </div>
+                    </div>
+ 
+                    <div class="form-part">
+                        <h3>How many vehicles in your fleet?</h3>
+                        
+                        <div class="input-container-fleet">
+ 
+                            <img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/c46ff1c7-1bc1-4682-9aed-cf3a5688bf6b.png" alt="car icon" />
+                            <div class="fleet-selectors">
+                                <label>Cars<span class="mandatory">*</span></label>
+                                <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="cars" id="carsInput" tabindex="-1" placeholder="Enter 0 if not applicable">
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                            <img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/c3b5da81-05e3-464a-88cc-9f1747fdacb4.png" alt="truck icon" />
+                            <div class="fleet-selectors">
+                                <label>Vans<span class="mandatory">*</span></label>
+                                <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="vans" id="vansInput" tabindex="-1" placeholder="Enter 0 if not applicable">
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                            <img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/acc9fdf9-3644-48f4-96eb-e56a98035fc5.png" alt="van icon" />
+                            <div class="fleet-selectors">
+                                <label>Trucks<span class="mandatory">*</span></label>
+                                <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="trucks" id="trucksInput" tabindex="-1" placeholder="Enter 0 if not applicable">
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                            <img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/13257971-bf77-4e84-89fb-0339d3e10dba.png" alt="bus icon" />
+                            <div class="fleet-selectors">
+                                <label>Buses<span class="mandatory">*</span></label>
+                                <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="buses" id="busesInput" tabindex="-1" placeholder="Enter 0 if not applicable">
+                                <p>&nbsp;</p>
+                            </div>
+ 
+                            <h3>How many litres do you use per year?</h3>
+ 
+                            <div class="mileage-container">
+                                <div class="fleet-selectors">
+                                    <label>National<span class="mandatory">*</span></label>
+                                    <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="national" id="nationalInput" tabindex="-1" placeholder="Enter 0 if not applicable">
+                                    <p>&nbsp;</p>
+                                </div>
+                                <div class="fleet-selectors">
+                                    <label>International<span class="mandatory">*</span></label>
+                                    <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="international" id="internationalInput" tabindex="-1" placeholder="Enter 0 if not applicable">
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <button type="button" id="btnBack2" class="back" tabindex="-1">Back</button>
+                            <button type="button" id="btnNext3" class="next" tabindex="-1">Next</button>
+                        </div>
+                    </div>
+ 
+                    <div class="form-part">
+                        <h3>What products are you interested in?</h3>
+                        <div class="input-container_products">
+ 
+                            <div class="product-container">
+                                <label class="label-container">
+                                    <input type="checkbox" name="fuels" tabindex="-1">
+                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/753ada22-24c9-40ca-b1f3-25af81b49481.png" alt="petrol pump icon" /></span>
+                                </label>
+                                <small>Fuels (Diesel/Petrol)</small>
+                            </div>
+ 
+                            <div class="product-container">
+                                <label class="label-container">
+                                    <input type="checkbox" name="LNG" tabindex="-1">
+                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/0e749f9c-fe89-4494-ab91-57d657eceaae.png" alt="molecule icon" /></span>
+                                </label>
+                                <small>LNG</small>
+                            </div>
+                            
+                            <div class="product-container">
+                                <label class="label-container">
+                                    <input type="checkbox" name="emobility" tabindex="-1">
+                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/b33914f1-1e11-4fbc-b2a1-e960943b8808.png" alt="electric car icon" /></span>
+                                </label>
+                                <small>E-mobility</small>
+                            </div>
+ 
+                            <div class="product-container">
+                                <label class="label-container">
+                                    <input type="checkbox" name="roadtolls" tabindex="-1">
+                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/a0dea0fa-9e56-4501-aec3-da4cfda6df2d.png" alt="balloon icon"/></span>
+                                </label>
+                                <small>Road Tolls</small>
+                            </div>
+ 
+                            <div class="product-container">
+                                <label class="label-container">
+                                    <input type="checkbox" name="telematics" tabindex="-1">
+                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/c560666c-8431-4a62-8ca2-53cf1f282158.png" alt="sliders icon" /></span>
+                                </label>
+                                <small>Telematics</small>
+                            </div>
+ 
+                            <div class="product-container">
+                                <label class="label-container">
+                                    <input type="checkbox" name="other" tabindex="-1">
+                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/bbaf34e2-e053-4029-a238-4ea3b8df2f65.png" alt="shopping trolley icon" /></span>
+                                </label>
+                                <small>Other</small>
+                            </div>
+ 
+                        </div>
+ 
+                        <div class="terms-container">
+ 
+                            <div class="privacy-container">
+                                <label class="checkbox" id="privacyLabel">Please tick this box to confirm you have read and understand our Privacy notice
+                                    <input type="checkbox" name="privacy" tabindex="-1">
+                                    <span class="checkmark"></span>
+                                    <p>&nbsp;</p>
+                                </label >   
+                            </div>
+ 
+                            <div class="marketingComms-container">
+                                <label class="checkbox">Please tick this box if you do not want to receive email marketing communications in relation to your inquiry
+                                    <input type="checkbox" name="marketingcomms" tabindex="-1">
+                                    <span class="checkmark"></span>
+                                </label >
+                            </div>
+ 
+                        </div>
+ 
+                        <div class="button-container">
+                            <button type="button" id="btnBack3" class="back" tabindex="-1">Back</button>
+                            <input type="submit" class="next" tabindex="-1" value="Submit" id="submit" >
+                          <input name="submitted" type="hidden" value="true">
+                        </div>
+ 
+                    </div>
+                    
+                </form>
+ 
+            </div>
+ 
+        </div>
+ 
+    <script src="formParticles.js"></script>
+    <script src="formApp.js"></script>
+ 
+</body>
+</html>

@@ -1,0 +1,696 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+ 
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+:root {
+    --shell-red: #dd1d21;
+    --shell-yellow: #fbce07;
+    --shell-dark-grey: #404040;
+}
+ 
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+ 
+body {
+    font-family: 'Roboto', sans-serif;
+    background: -webkit-gradient(linear, left top, right bottom, from(var(--shell-yellow)), to(var(--shell-red)));
+    background: -o-linear-gradient(top left, var(--shell-yellow), var(--shell-red));
+    background: linear-gradient(to bottom right, var(--shell-yellow), var(--shell-red));
+    width: 100vw;
+    height: 100vh;
+    color: var(--shell-dark-grey);
+ 
+    display: -webkit-box;
+ 
+    display: -ms-flexbox;
+ 
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+ 
+.main-container {
+    max-width: 600px;
+    width: 100%;
+    height: 865px;
+    margin: 0.8rem;
+    background: #fff;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 10px 1px rgba(0,0,0,0.2);
+            box-shadow: 2px 2px 10px 1px rgba(0,0,0,0.2);
+    text-align: center;
+    overflow: hidden;
+    -webkit-transition: height 0.7s ease;
+    -o-transition: height 0.7s ease;
+    transition: height 0.7s ease;
+    z-index: 10;
+}
+ 
+ 
+/* PARTICLES */
+#particles-js {
+    position: fixed;   
+    width: 100vw;
+    height: 100vh;
+}
+ 
+ 
+/* PROGRESS BAR */
+ 
+.step-row {
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-shadow: 0 -1px 5px -1px #000;
+            box-shadow: 0 -1px 5px -1px #000;
+    position: relative;
+}
+ 
+.step-column {
+    z-index: 1;
+}
+ 
+small {
+    color: var(--shell-dark-grey);
+    -webkit-transition: 0.6s ease;
+    -o-transition: 0.6s ease;
+    transition: 0.6s ease;
+    font-size: 14px;
+}
+ 
+.step1 {
+    color: #fff;
+}
+ 
+ 
+#progressBar {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 25%;
+    background: -webkit-gradient(linear, left top, right top, from(var(--shell-red)), to(var(--shell-yellow)));
+    background: -o-linear-gradient(left, var(--shell-red), var(--shell-yellow));
+    background: linear-gradient(to right, var(--shell-red), var(--shell-yellow));
+    -webkit-transition: width 0.5s ease;
+    -o-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+}
+ 
+#progressBar::after {
+    content: '';
+    height: 0;
+    width: 0;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    border-left: 20px solid var(--shell-yellow);
+}
+ 
+ 
+ 
+ 
+ 
+/* BUTTONS */
+ 
+.button-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    gap: 30px;
+    margin-top: 1rem;
+}
+ 
+button {
+    font-weight: bold;
+    font-size: 16px;
+    /* border-radius: 5px; */
+    width: 200px;
+    padding: 1rem;
+    border: 1px solid transparent;
+    -webkit-transition: background-color .15s ease-in, color .15s ease-in;
+   -o-transition: background-color .15s ease-in, color .15s ease-in;
+    transition: background-color .15s ease-in, color .15s ease-in;
+    cursor: pointer;
+}
+ 
+.back {
+    background-color: var(--shell-red);
+    color: #fff;
+    border: 1px solid var(--shell-red)
+}
+ 
+.next {
+    background-color: var(--shell-yellow);
+    color: var(--shell-dark-grey);
+}
+ 
+.back:hover,
+.back:focus {
+    background-color: #fff;
+    color: var(--shell-red);
+    outline: none;
+}
+ 
+.next:hover,
+.next:focus {
+    background-color: var(--shell-dark-grey);
+    color: var(--shell-yellow);
+    outline: none;
+}
+ 
+ 
+ 
+ 
+ 
+/*TOP-LEVEL FORM*/
+ 
+.form-container {
+    padding: 0 40px;
+}
+ 
+form {
+    position: relative;
+}
+ 
+.form-part {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-transition: 0.8s ease;
+    -o-transition: 0.8s ease;
+    transition: 0.8s ease;
+}
+ 
+form .form-part:not(:first-child) {
+    left: 800px;
+}
+ 
+ 
+h1, h2, h3 {
+    text-align: center;
+}
+ 
+h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 4px solid var(--shell-yellow);
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: inherit;
+}
+ 
+h2, h3 {
+    margin-bottom: 1.5rem;
+}
+ 
+h2 {
+    font-size:22px;
+}
+ 
+h3 {
+    font-size: 16px;
+}
+ 
+p {
+    color:var(--shell-red);
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+    opacity: 0;
+    text-align: left;
+}
+ 
+label {
+    color: var(--shell-dark-grey);
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 8px;
+    text-align: left;
+}
+ 
+ 
+.headers {
+    margin: 2rem;
+}
+ 
+.headers > p {
+    opacity: 1;
+    text-align: center;
+    margin: -1rem;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+/* PERSONAL & COMPANY INFO */
+ 
+.input-container-personal_company {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 5px;
+    text-align: left;
+}
+ 
+ 
+ 
+ 
+ 
+/* FLEET INFO */
+ 
+.input-container-fleet {
+    display: -ms-grid;
+    display: grid;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-grid-columns: 30% 70%;
+    grid-template-columns: 30% 70%;
+}
+ 
+ 
+.input-container-fleet h3 {
+    display: inline-block;
+    -ms-grid-column-span: 2;
+    grid-column: span 2;
+    padding: 2rem 0 0.3rem;
+}
+ 
+.input-container-fleet > img {
+    width: 80%;
+    margin: auto;
+}
+ 
+.fleet-selectors {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+ 
+.mileage-container {
+    -ms-grid-column-span: 2;
+    grid-column: span 2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+   -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 10px;
+}
+ 
+.fleet-selectors label {
+    text-align: left;
+    font-size: 16px;
+    margin-bottom: .5rem;
+    font-size: 12px;
+}
+ 
+.input-container_products {
+    display: -ms-grid;
+    display: grid;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    grid-gap: 30px;
+    -ms-grid-columns: 1fr 30px 1fr 30px 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    margin: auto;
+}
+ 
+ 
+.input-container-personal_company input, 
+.input-container-fleet input {
+    border: 1px solid var(--shell-dark-grey);
+    padding: .7rem .5rem;
+    width: 100%;
+    color: var(--shell-dark-grey);
+}
+ 
+input:hover, 
+input:focus {
+    outline: none;
+    border: 1px solid transparent; 
+    -webkit-appearance: none;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(251,206,7,0.25);
+    box-shadow: 0px 0px 5px 3px rgba(251,206,7,0.5);
+}
+ 
+ 
+ 
+/* PRODUCT INFO */
+ 
+.product-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 10px;
+}
+ 
+.product-container small {
+    font-size: 12px;
+    margin: 0 auto;
+}
+ 
+ 
+.label-container {
+    position: relative;
+    cursor: pointer;
+    margin: auto;
+    width: 100px;
+    height: 80px;
+    border-radius: 10px;
+    -webkit-transition: -webkit-box-shadow 0.2s ease;
+    transition: -webkit-box-shadow 0.2s ease;
+    -o-transition: box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease, -webkit-box-shadow 0.2s ease;
+}
+ 
+.label-container:hover {
+    -webkit-box-shadow: 0px 0px 5px 5px var(--shell-yellow);
+            box-shadow: 0px 0px 5px 5px var(--shell-yellow);
+}
+ 
+ 
+ 
+ 
+/* CUSTOM CHECKBOX FOR PRODUCTS */
+ 
+/* Hide the browser's default checkbox */
+.label-container input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+ 
+ 
+ 
+  /* Custom checkbox */
+.product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 80px;
+    -webkit-box-shadow: -2px -2px 5px rgba(255, 255, 255, 1), 3px 3px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: -2px -2px 5px rgba(255, 255, 255, 1), 3px 3px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+ 
+ 
+  /* Checked States */
+.label-container input[type="checkbox"]:checked ~ .product-image {
+    -webkit-box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1), inset 3px 3px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: inset -2px -2px 5px rgba(255, 255, 255, 1), inset 3px 3px 5px rgba(0, 0, 0, 0.3);
+    background: var(--shell-yellow);
+  }
+ 
+.label-container input[type="checkbox"]:checked ~ .product-image > img {
+    -webkit-transform: scale(0.95);
+        -ms-transform: scale(0.95);
+            transform: scale(0.95);
+  }
+ 
+ 
+  .product-image img {
+      width: 100%;
+  }
+ 
+ 
+ 
+ 
+/*----TERMS----*/
+ 
+ 
+.terms-container {
+    border-top: 3px solid var(--shell-yellow);
+    margin-top: 3rem;
+    margin-bottom: 20px;
+}
+ 
+.privacy-container, .marketingComms-container {
+    margin: 2rem 2rem 0;
+}
+ 
+.marketingComms-container {
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+}
+ 
+ 
+ 
+.terms-container > div > label > p {
+    margin-top: 5px;
+    font-size: 10px;
+}
+ 
+ 
+/* CUSTOM CHECKBOX FOR TERMS */
+ 
+/* Customize the label (the checkbox) */
+.terms-container div label {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .terms-container div label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .terms-container div label:hover input ~ .checkmark {
+   outline: 2px solid var(--shell-yellow);
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .terms-container div input:checked ~ .checkmark {
+    background-color: var(--shell-yellow);
+  }
+  
+  /* Create the check/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the check when checked */
+  .terms-container div input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the check/indicator */
+  .terms-container div label .checkmark:after {
+    top: 1px;
+    left: 6px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--shell-dark-grey);
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+ 
+ 
+ 
+ 
+  /* ERROR STYLES */
+ 
+.mandatory {
+    color: var(--shell-red);
+}
+ 
+.error_message {
+    font-size: 12px;
+    color: var(--shell-red);
+    opacity: 1;
+    -webkit-transition: opacity 0.7s ease-in;
+    -o-transition: opacity 0.7s ease-in;
+    transition: opacity 0.7s ease-in;
+}
+ 
+.error_hide {
+    display: none;
+}
+ 
+.error_border {
+    border: 1px solid transparent !important;
+    -webkit-appearance: none;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(221,29,21,0.5 );
+    box-shadow: 0px 0px 5px 3px rgba(221,29,21,0.5);
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+ 
+ 
+ 
+ 
+/* MEDIA QUERIES */ 
+ 
+@media only screen and (max-height: 823px) {
+ 
+    body {
+        height: 100%;
+    }
+ 
+}
+ 
+@media only screen and (max-width: 600px) {
+ 
+    .form-container {
+        padding: 0 20px;
+    }
+   
+ 
+    .button-container {
+        gap: 15px;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    }
+ 
+    .input-container_products {
+        grid-gap: 10px;
+        -ms-grid-columns: 1fr 10px 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+ 
+    .step-row {
+        height: 40px;
+    }
+    
+    #progressBar::after {
+        content: '';
+        height: 0;
+        width: 0;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        position: absolute;
+        right: -14px;
+        top: 0;
+        border-left: 15px solid var(--shell-yellow);
+    }
+    
+  }
+ 
+  @media only screen and (max-width: 480px) {
+ 
+    .main-container {
+        height: 830px;
+    }
+ 
+    .privacy-container,
+    .marketingComms-container {
+        margin-left: 0;
+        margin-right: 0; 
+    }
+ 
+    h1 {
+        font-size: 22px;
+    }
+    h2 {
+        font-size:16px;
+    }
+ 
+    h3 {
+        font-size: 14px;
+    }
+ 
+    small {
+        font-size: 12px;
+    }
+ 
+  }
+
