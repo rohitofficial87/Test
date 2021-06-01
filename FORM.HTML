@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shell SFMC Lead Capture Form</title>
-    <link type="text/html" rel="stylesheet" href="https://raw.githubusercontent.com/rohitofficial87/Test/main/Form.css">
-    <script  type="text/html" defer src="https://raw.githubusercontent.com/rohitofficial87/Test/main/formJS.js"></script>
-</head>
-    
-    %%[
+%%[
 IF RequestParameter("submitted") == true THEN
 
  
@@ -28,265 +17,275 @@ IF RequestParameter("submitted") == true THEN
   ]%%
 <h2 style='text-align: center;'>Thank you for reaching out to Shell. It seems that you are already an existing customer and the Shell representative will be in touch to discuss your requirements directly. </h2>
 <h2 style='text-align: center;'>The Shell Fleet Solutions Team. </h2>
+%%[ 
+  ELSE
+ SET @subscriberRows = RetrieveSalesforceObjects(
+ "Lead",
+ "Id,Email",
+ "Email", "=", RequestParameter("email")
+ )
+   set @Salutationvar = RequestParameter("Salutation")
+   set @firstNamevar = RequestParameter("firstname")
+   set @lastnamevar = RequestParameter("lastname")
+   set @companyvar =RequestParameter("companyname")
+   set @emailvar =RequestParameter("email")
+   set @phonenumbervar =RequestParameter("phonenumber")
+   set @companyzipvar =RequestParameter("companyzip")
+   set @companynumbervar =RequestParameter("companynumber")
+   set @vatnumbervar =RequestParameter("vatnumber")
+   set @carsvar =RequestParameter("cars")
+   set @vansvar =RequestParameter("vans")
+   set @trucksvar =RequestParameter("trucks")
+   set @busesvar =RequestParameter("buses")
+   set @nationalvar =RequestParameter("national")
+   set @internationalvar =RequestParameter("international")
+   set @fuelsvar =RequestParameter("fuels")
+   set @lngvar =RequestParameter("lng")
+   set @emobilityvar =RequestParameter("emobility")
+   set @roadtollsvar =RequestParameter("roadtolls")
+   set @telematicsvar =RequestParameter("telematics")
+   set @othervar =RequestParameter("other")
+   set @privacyvar =RequestParameter("privacy")
+   set @marketingcommsvar =RequestParameter("marketingcomms")
+   SET @preferences = CONCAT(
+    Iif(@fuelsvar == "Classic fuels", "Classic fuels;", ""),
+    Iif(@lngvar == "LNG", "LNG;", ""),
+    Iif(@emobilityvar == "E-mobility", "E-mobility;", ""),
+    Iif(@roadtollsvar == "SOTR", "SOTR;", ""),
+    Iif(@telematicsvar == "Telematics", "Telematics;", ""),
+    Iif(@othervar == "Other", "Other", ""),
+  )
+   IF @privacyvar == 'on' THEN
+   SET @privacyvar = 'True'
+   ELSE
+   SET @privacyvar = 'False'
+   ENDIF
+   IF @marketingcommsvar == 'on' THEN
+   SET @marketingcommsvar = 'True'
+   ELSE
+   SET @marketingcommsvar = 'False'
+   ENDIF
+   
+   /* get lead id if lead exists */
+   
+   IF RowCount(@subscriberRows) > 0 THEN 
+   SET @leadId = Field(Row(@subscriberRows, 1), "Id")
+   
+   /* update existing lead */
+   SET @updateRecord = UpdateSingleSalesforceObject(
+    "Lead", @leadId,
+    "FirstName", RequestParameter("firstname"),
+    "LastName", RequestParameter("lastname"),
+    "Company", RequestParameter("company"),
+    "Phone",@phonenumbervar,
+    "postalcode",@companyzipvar,
+  "FS_Chamber_Of_Commerce__c",@companynumbervar,
+  "FS_VAT_Registration_No__c",@vatnumbervar,
+  "FS_Cars__c",@carsvar,
+  "FS_Vans__c",@vansvar,
+  "FS_Trucks__c",@trucksvar,
+  "FS_Buses__c",@busesvar,
+  "FS_National_Fuels_Potential__c",@nationalvar,
+  "FS_International_Fuels_Potential__c",@internationalvar,
+  "FS_Privacy_Acceptance__c",@privacyvar,
+  "HasOptedOutOfEmail",@marketingcommsvar,
+  "FS_Products_Interested__c",@preferences
+   )
+
+ 
+
+   ELSE
+    /* create a new lead */
+ SET @leadId = CreateSalesforceObject(
+   "Lead",19,
+   "FirstName",@firstNamevar,
+   "LastName", @lastnamevar,
+   "Company", @companyvar,
+   "Email", @emailvar,
+  "Salutation",@Salutationvar,
+  "Phone",@phonenumbervar,
+  "postalcode",@companyzipvar,
+  "FS_Chamber_Of_Commerce__c",@companynumbervar,
+  "FS_VAT_Registration_No__c",@vatnumbervar,
+  "FS_Cars__c",@carsvar,
+  "FS_Vans__c",@vansvar,
+  "FS_Trucks__c",@trucksvar,
+  "FS_Buses__c",@busesvar,
+  "FS_National_Fuels_Potential__c",@nationalvar,
+  "FS_International_Fuels_Potential__c",@internationalvar,
+  "FS_Privacy_Acceptance__c",@privacyvar,
+  "HasOptedOutOfEmail",@marketingcommsvar,
+  "FS_Products_Interested__c",@preferences,
+  "FS_Business_Unit_Assignment__c",'GB'
+     )
+   ENDIF   
+   
+ ]%% 
+ <h2 style='text-align: center;'>Thank you for your enquiry, one of the team will be in touch to discuss your requirements shortly         
+ </h2>
+ <h2 style='text-align: center;'>
+   The Shell Fleet Solutions Team         
+
+ 
+
+ </h2>
 %%[
 ENDIF
-ENDIF
 ]%%
-    
-    
-    
-<body>
- 
-    <div id="particles-js"></div>
-    
-        <div class="main-container">
- 
-            <div class="step-row">
-                <div id="progressBar"></div>
-                <div class="step-column"><small class="step1">Step 1</small></div>
-                <div class="step-column"><small>Step 2</small></div>
-                <div class="step-column"><small>Step 3</small></div>
-                <div class="step-column"><small>Step 4</small></div>
-            </div>
-            
-            <div class="headers">
-                <h1>14 Get in touch</h1>
-                <h2>Please fill in the details below and one of the team will be in touch shortly</h2>
-                <p><span class="mandatory">*</span> denotes a mandatory field</p>
-            </div>
- 
-            <div class="form-container">
- 
-                <form id="form" action="%%=RequestParameter('PAGEURL')=%%" method="POST">
- 
-                    <div class="form-part">
-                        <h3>Personal Details</h3>
-                        <div class="input-container-personal_company">
- 
-                            <div>
-                                <label>Salutation</label>
-                                <select name="Salutation" value="">
-<option></option>
-<option> Mr. </option>
-<option> Mrs. </option>
-<option> Ms. </option>
-</select>
-                                <p>&nbsp;</p>
-                            </div>
- 
-                            <div>
-                                <label>First Name:<span class="mandatory">*</span></label>
-                                <input type="text" name="firstname" id="firstNameInput">
-                                <p>&nbsp;</p>
-                            </div>
-                            
-                            <div>
-                                <label>Last Name:<span class="mandatory">*</span></label>
-                                <input type="text" name="lastname" id="lastNameInput">
-                                <p>&nbsp;</p>
-                            </div>
-                            
-                            <div>
-                                <label>Email Address:<span class="mandatory">*</span></label>
-                                <input type="email" name="email" id="emailInput">
-                                <p>&nbsp;</p>
-                            </div>
- 
-                            <div>
-                                <label>Phone Number:<span class="mandatory">*</span></label>
-                                <input type="text" name="phonenumber" id="phoneInput">
-                                <p>&nbsp;</p>
-                            </div>
- 
-                        </div>
-                        <div class="button-container">
-                            <button type="button" id="btnNext1" class="next">Next</button>
-                        </div>
-                    </div>
- 
-                    <div class="form-part">
-                        <h3>Company Details</h3>
-                        <div class="input-container-personal_company">
- 
-                            <div>
-                                <label>Company Name:</label>
-                                <input type="text" name="companyname" id="companyNameInput" tabindex="-1">
-                                <p>&nbsp;</p>
-                            </div>
- 
-                            <div>
-                                <label>Company Zip Code:</label>
-                                <input type="text" name="companyzip" id="companyZipInput" tabindex="-1">
-                                <p>&nbsp;</p>
-                            </div>
- 
-                            <div>
-                                <label>Company Registration Number:</label>
-                                <input type="text" name="companynumber" id="companyNumberInput" tabindex="-1">
-                                <p>&nbsp;</p>
-                            </div>
- 
-                            <div>
-                                <label>Vat Number:</label>
-                                <input type="text" name="vatnumber" id="vatNumberInput" tabindex="-1">
-                                <p>&nbsp;</p>
-                            </div>
- 
-                        </div>
-                        <div class="button-container">
-                            <button type="button" id="btnBack1" class="back" tabindex="-1">Back</button>
-                            <button type="button" id="btnNext2" class="next" tabindex="-1">Next</button>
-                       </div>
-                    </div>
- 
-                    <div class="form-part">
-                        <h3>How many vehicles in your fleet?</h3>
-                        
-                        <div class="input-container-fleet">
- 
-                            <img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/c46ff1c7-1bc1-4682-9aed-cf3a5688bf6b.png" alt="car icon" />
-                            <div class="fleet-selectors">
-                                <label>Cars<span class="mandatory">*</span></label>
-                                <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="cars" id="carsInput" tabindex="-1" placeholder="Enter 0 if not applicable">
-                                <p>&nbsp;</p>
-                            </div>
- 
-                            <img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/c3b5da81-05e3-464a-88cc-9f1747fdacb4.png" alt="truck icon" />
-                            <div class="fleet-selectors">
-                                <label>Vans<span class="mandatory">*</span></label>
-                                <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="vans" id="vansInput" tabindex="-1" placeholder="Enter 0 if not applicable">
-                                <p>&nbsp;</p>
-                            </div>
- 
-                            <img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/acc9fdf9-3644-48f4-96eb-e56a98035fc5.png" alt="van icon" />
-                            <div class="fleet-selectors">
-                                <label>Trucks<span class="mandatory">*</span></label>
-                                <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="trucks" id="trucksInput" tabindex="-1" placeholder="Enter 0 if not applicable">
-                                <p>&nbsp;</p>
-                            </div>
- 
-                            <img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/13257971-bf77-4e84-89fb-0339d3e10dba.png" alt="bus icon" />
-                            <div class="fleet-selectors">
-                                <label>Buses<span class="mandatory">*</span></label>
-                                <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="buses" id="busesInput" tabindex="-1" placeholder="Enter 0 if not applicable">
-                                <p>&nbsp;</p>
-                            </div>
- 
-                            <h3>How many litres do you use per year?</h3>
- 
-                            <div class="mileage-container">
-                                <div class="fleet-selectors">
-                                    <label>National<span class="mandatory">*</span></label>
-                                    <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="national" id="nationalInput" tabindex="-1" placeholder="Enter 0 if not applicable">
-                                    <p>&nbsp;</p>
-                                </div>
-                                <div class="fleet-selectors">
-                                    <label>International<span class="mandatory">*</span></label>
-                                    <input type="number" min="0" data-maxlength="18" oninput="this.value=this.value.slice(0,this.dataset.maxlength)" name="international" id="internationalInput" tabindex="-1" placeholder="Enter 0 if not applicable">
-                                    <p>&nbsp;</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="button-container">
-                            <button type="button" id="btnBack2" class="back" tabindex="-1">Back</button>
-                            <button type="button" id="btnNext3" class="next" tabindex="-1">Next</button>
-                        </div>
-                    </div>
- 
-                    <div class="form-part">
-                        <h3>What products are you interested in?</h3>
-                        <div class="input-container_products">
- 
-                            <div class="product-container">
-                                <label class="label-container">
-                                    <input type="checkbox" name="fuels" tabindex="-1">
-                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/753ada22-24c9-40ca-b1f3-25af81b49481.png" alt="petrol pump icon" /></span>
-                                </label>
-                                <small>Fuels (Diesel/Petrol)</small>
-                            </div>
- 
-                            <div class="product-container">
-                                <label class="label-container">
-                                    <input type="checkbox" name="LNG" tabindex="-1">
-                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/0e749f9c-fe89-4494-ab91-57d657eceaae.png" alt="molecule icon" /></span>
-                                </label>
-                                <small>LNG</small>
-                            </div>
-                            
-                            <div class="product-container">
-                                <label class="label-container">
-                                    <input type="checkbox" name="emobility" tabindex="-1">
-                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/b33914f1-1e11-4fbc-b2a1-e960943b8808.png" alt="electric car icon" /></span>
-                                </label>
-                                <small>E-mobility</small>
-                            </div>
- 
-                            <div class="product-container">
-                                <label class="label-container">
-                                    <input type="checkbox" name="roadtolls" tabindex="-1">
-                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/a0dea0fa-9e56-4501-aec3-da4cfda6df2d.png" alt="balloon icon"/></span>
-                                </label>
-                                <small>Road Tolls</small>
-                            </div>
- 
-                            <div class="product-container">
-                                <label class="label-container">
-                                    <input type="checkbox" name="telematics" tabindex="-1">
-                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/c560666c-8431-4a62-8ca2-53cf1f282158.png" alt="sliders icon" /></span>
-                                </label>
-                                <small>Telematics</small>
-                            </div>
- 
-                            <div class="product-container">
-                                <label class="label-container">
-                                    <input type="checkbox" name="other" tabindex="-1">
-                                    <span class="product-image"><img src="https://image.fleetsolutions.shell.com/lib/fe2f117075640474731d73/m/1/bbaf34e2-e053-4029-a238-4ea3b8df2f65.png" alt="shopping trolley icon" /></span>
-                                </label>
-                                <small>Other</small>
-                            </div>
- 
-                        </div>
- 
-                        <div class="terms-container">
- 
-                            <div class="privacy-container">
-                                <label class="checkbox" id="privacyLabel">Please tick this box to confirm you have read and understand our Privacy notice
-                                    <input type="checkbox" name="privacy" tabindex="-1">
-                                    <span class="checkmark"></span>
-                                    <p>&nbsp;</p>
-                                </label >   
-                            </div>
- 
-                            <div class="marketingComms-container">
-                                <label class="checkbox">Please tick this box if you do not want to receive email marketing communications in relation to your inquiry
-                                    <input type="checkbox" name="marketingcomms" tabindex="-1">
-                                    <span class="checkmark"></span>
-                                </label >
-                            </div>
- 
-                        </div>
+%%[ ELSE ]%%
+<style>
+table {
+  width: 100%;
+}
+  
+input[type=submit] {
+   background-color: orange;
+  border: none;
+  color: white;
+  }
 
-    
-<input name="submitted" type="hidden" value="true">
+ 
 
+.labelstyling {
+   display: inline-block;
+  width: 140px;
+  text-align: right;
+  }
+  
+  
+</style>
+   <h2 style='text-align: center;'>Get in touch</h2>
+   <h3>Please fill in the details below and one of the team will be in touch shortly</h3> 
+      <form action="%%=RequestParameter('PAGEURL')=%%" method="post">   
+<table style="padding: 20px;">
+      
 
+ 
 
-                        <div class="button-container">
-                            <button type="button" id="btnBack3" class="back" tabindex="-1">Back</button>
-                            <input type="submit" class="next" tabindex="-1" value="Submit" id="submit" >
-                          <input name="submitted" type="hidden" value="true">
-                        </div>
- 
-                    </div>
-                    
-                </form>
- 
-            </div>
- 
-        </div>
- 
-    <script  type="text/html" src="https://raw.githubusercontent.com/rohitofficial87/Test/main/formParticles.js"></script>
-    <script  type="text/html" src="https://raw.githubusercontent.com/rohitofficial87/Test/main/formApp.js"></script>
- 
-</body>
-</html>
+   <tr>
+   <td>
+   <label class="labelstyling" >Salutation:</label><input type="text" name="Salutation">
+   </td>
+   <td>
+   </td>
+   </tr>
+   <tr>
+   <td>
+   <label class="labelstyling">First name: </label><input type="text" name="firstname" required="" oninvalid="this.setCustomValidity('Please complete your contact details so we can contact you about your enquiry')" 
+onchange="this.setCustomValidity('')"></td>
+   <td>
+   <label class="labelstyling">Last name</label><input type="text" name="lastname" required="" oninvalid="this.setCustomValidity('Please complete your contact details so we can contact you about your enquiry')" 
+onchange="this.setCustomValidity('')"></td>
+   </tr>
+   <tr>
+   <td>
+   <label class="labelstyling">Email Address:</label><input type="text" name="email" required="" oninvalid="this.setCustomValidity('Please complete your contact details so we can contact you about your enquiry')" 
+onchange="this.setCustomValidity('')"></td>
+   <td>
+   <label class="labelstyling">Phone Number:</label><input type="tel" name="phonenumber" required="" oninvalid="this.setCustomValidity('Please complete your contact details so we can contact you about your enquiry')" 
+onchange="this.setCustomValidity('')"></td>
+   </tr>
+   <tr>
+   <td>
+         <label class="labelstyling">Company Name:</label><input type="text" name="companyname"></td>
+   <td>
+   <label class="labelstyling">Company Zip Code:</label><input type="text" name="companyzip"></td>
+   </tr>
+   <tr>
+   <td>
+   <label class="labelstyling">Company Number:</label><input type="text" name="companynumber"></td>
+   <td>
+   <label class="labelstyling">VAT Number:</label><input type="text" name="vatnumber"></td>
+   </tr>
+     <tr>
+   <td>
+   &nbsp;
+   </td>
+   </tr>
+   <tr>
+   <td colspan=2>How many vehicles are in your fleet? </td>
+   </tr>
+   <tr>
+   <td><label>Cars</label><br/><input type="number" name="cars" required='' oninvalid="this.setCustomValidity('Please enter a value .Enter 0 If not applicable ')" 
+onchange="this.setCustomValidity('')"></td>
+   <td><label>Vans</label><br/><input type="number" name="vans" required='' oninvalid="this.setCustomValidity('Please enter a value .Enter 0 If not applicable ')" 
+onchange="this.setCustomValidity('')"></td>
+   <td><label>Trucks</label><br/><input type="number" name="trucks" required='' oninvalid="this.setCustomValidity('Please enter a value .Enter 0 If not applicable ')" 
+onchange="this.setCustomValidity('')"></td>
+   <td><label>Buses</label><br/><input type="number" name="buses" required='' oninvalid="this.setCustomValidity('Please enter a value .Enter 0 If not applicable ')" 
+onchange="this.setCustomValidity('')"></td>
+   </tr>
+     <tr>
+   <td>
+   &nbsp;
+   </td>
+   </tr>
+   <tr>
+   <td colspan=2>How many litres do you use per year? </td>
+   </tr>
+   <tr>
+   <td><label>NATIONAL</label><br/><input type="number" name="national" required='' oninvalid="this.setCustomValidity('Please enter a value .Enter 0 If not applicable ')" 
+onchange="this.setCustomValidity('')"></td>
+   <td><label>INTERNATIONAL</label><br/><input type="number" name="international" required='' oninvalid="this.setCustomValidity('Please enter a value .Enter 0 If not applicable ')" 
+onchange="this.setCustomValidity('')"></td>
+   </tr>
+     <tr>
+   <td>
+   &nbsp;
+   </td>
+   </tr>
+  <tr>
+   <td colspan=2>What products are you interested in? </td>
+   </tr>
+   <tr>
+   <td>
+   <input type="checkbox" id="fuels" name="fuels" value="Classic fuels">
+   <label for="vehicle1"> Fuels (Diesel/Petrol)</label></td>
+   <td>
+   <input type="checkbox" id="lng" name="LNG" value="lng">
+   <label for="vehicle1">LNG</label></td>
+   <td>
+   <input type="checkbox" id="emobility" name="emobility" value="E-mobility">
+   <label for="vehicle1">E-mobility</label></td>
+   </tr>
+   <tr>
+   <td>
+   <input type="checkbox" id="roadtolls" name="roadtolls" value="SOTR">
+   <label for="vehicle1">Road Tolls</label></td>
+   <td>
+   <input type="checkbox" id="telematics" name="telematics" value="Telematics">
+   <label for="vehicle1">Telematics</label></td>
+   <td>
+   <input type="checkbox" id="other" name="other" value="Other">
+   <label for="vehicle1">Other</label></td>
+   </tr>
+   <tr>
+   <td>
+   &nbsp;
+   </td>
+   </tr>
+   <tr>
+   <td colspan=2>
+   <input type="checkbox" id="privacy" name="privacy" required='' oninvalid="this.setCustomValidity('Please tick the Privacy Policy check-box to confirm you have read and understood our Privacy Notice')" 
+onchange="this.setCustomValidity('')">
+   <label for="vehicle1">Please tick this box to confirm that you have read and understood our Privacy Notice</label></td>
+   </tr>
+   <tr>
+   <td>
+   &nbsp;
+   </td>
+   </tr>
+  <tr>
+   <td colspan=2>
+   <input type="checkbox" id="marketingcomms" name="marketingcomms">
+   <label for="vehicle1">Please tick this box if you do not want to receive email marketing communications in relation to your inquiry</label></td>
+   </tr>
+   <tr>
+   <td>
+         <input name="submitted" type="hidden" value="true"></td>
+         <td><input type="submit" value="Submit"></td>
+   </td>
+   </tr>
+  </table>
+</form> 
+%%[ ENDIF ]%%
