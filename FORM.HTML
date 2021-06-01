@@ -8,6 +8,33 @@
     <link type="text/html" rel="stylesheet" href="https://raw.githubusercontent.com/rohitofficial87/Test/main/Form.css">
     <script  type="text/html" defer src="https://raw.githubusercontent.com/rohitofficial87/Test/main/formJS.js"></script>
 </head>
+    
+    %%[
+IF RequestParameter("submitted") == true THEN
+
+ 
+
+/* check if lead already exists */
+
+ 
+
+  
+    SET @subscriberRowscontacts = RetrieveSalesforceObjects(
+   "Contact",
+   "Id,Email",
+   "Email", "=", RequestParameter("email")
+   )
+  IF RowCount(@subscriberRowscontacts) > 0 THEN
+  ]%%
+<h2 style='text-align: center;'>Thank you for reaching out to Shell. It seems that you are already an existing customer and the Shell representative will be in touch to discuss your requirements directly. </h2>
+<h2 style='text-align: center;'>The Shell Fleet Solutions Team. </h2>
+%%[
+ENDIF
+ENDIF
+]%%
+    
+    
+    
 <body>
  
     <div id="particles-js"></div>
@@ -238,7 +265,12 @@
                             </div>
  
                         </div>
- 
+
+    
+<input name="submitted" type="hidden" value="true">
+
+
+
                         <div class="button-container">
                             <button type="button" id="btnBack3" class="back" tabindex="-1">Back</button>
                             <input type="submit" class="next" tabindex="-1" value="Submit" id="submit" >
